@@ -1,5 +1,5 @@
-title: Financial Economics
-description: Time Series econometric analysis.
+title: Computational Finance
+description: Analyze Financial data, Estimate Statistical Models
 show_downloads: true
 
 baseurl: "/Financial-Economics" # change this to the subpath of your site, e.g. /blog. Leave it empty if you don't need it.
