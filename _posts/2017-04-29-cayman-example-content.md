@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Volatility with ARCH and GARCH for Time Series Forecasting in R"
+tagline: Ashiq Zaman
 ---
 
 *Introduction: ARCH & GARCH Models*
