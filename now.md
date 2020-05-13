@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Now
-tagline: What I'm doing now
+title: ashiq
+tagline: 
 permalink: /now.html
 ref: now
 order: 2
