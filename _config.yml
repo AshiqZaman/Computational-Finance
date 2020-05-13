@@ -2,7 +2,7 @@ title: Computational Finance
 description: Analyze Financial data, Estimate Statistical Models
 show_downloads: true
 
-baseurl: "/Financial-Economics" # change this to the subpath of your site, e.g. /blog. Leave it empty if you don't need it.
+baseurl: "/Computational-Finance" # change this to the subpath of your site, e.g. /blog. Leave it empty if you don't need it.
 url: "https://AshiqZaman.github.io" # change this to the base hostname & protocol for your site
 
 
