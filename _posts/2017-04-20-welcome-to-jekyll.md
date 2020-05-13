@@ -3,7 +3,6 @@ layout: post
 title: "Introduction to Stock Analysis with R"
 ---
 
-### Preparing the Environment
 Firstly, we install and load the necessary packages.
 
 
