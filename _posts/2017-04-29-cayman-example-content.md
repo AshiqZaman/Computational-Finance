@@ -3,17 +3,17 @@ layout: post
 title: "DCC-GARCH"
 ---
 
-## Introduction: ARCH & GARCH Models
+*Introduction: ARCH & GARCH Models*
 
 An ARCH (autoregressive conditionally heteroscedastic) model is a model for the variance of a time series. ARCH models are used to describe a changing, possibly volatile variance. Although an ARCH model could possibly be used to describe a gradually increasing variance over time, most often it is used in situations in which there may be short periods of increased variation. (Gradually increasing variance connected to a gradually increasing mean level might be better handled by transforming the variable.)
 
-### Multivariate GARCH Models
+*Multivariate GARCH Models*
 
 In line with Engle (2002), the DCC-GARCH can be presented as follows:
 
 ![dcc equation](https://user-images.githubusercontent.com/47462688/81708341-0e437400-9469-11ea-8cc4-d1f824c04e59.PNG)
 
-### Import Pilot data
+*Import Pilot data*
 
 ```{r}
 price<-read.csv("price.csv")
@@ -22,7 +22,7 @@ return<-read.csv("return.csv")
 head(return)
 ```
 
-### Convert into time series data
+*Convert into time series data*
 
 ```{r}
 library(zoo)
@@ -33,25 +33,25 @@ head(return)
 dcc<-as.xts(return)
 ```
 
-### Install packages
+*Install packages*
 
 ```{r}
 library(quantmod)
 library(rugarch)
 library(rmgarch)
 ```
-### Univariate GARCH Model
+*Univariate GARCH Model*
 
 Here we are using the functionality provided by the rugarch package written by Alexios Galanos.
 
-### Model Specification
+*Model Specification*
 
 The first thing you need to do is to ensure you know what type of GARCH model you want to estimate and then let R know about this. It is the ugarchspec( ) function which is used to let R know about the model type. There is in fact a default specification and the way to invoke this is as follows
 
 ```{r}
 ug_spec = ugarchspec()
 ```
-### ug_spec is now a list which contains all the relevant model specifications. Let's look at them:
+ug_spec is now a list which contains all the relevant model specifications. Let's look at them:
 
 ```{r}
 ug_spec
@@ -73,7 +73,7 @@ ewma_spec = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)),
         distribution.model="norm", fixed.pars=list(omega=0))
 ```
 
-### Model Estimation
+*Model Estimation*
 
 Now that we have specified a model to estimate we need to find the best parameters, i.e. we need to estimate the model. This step is achieved by the ugarchfit function.
 
@@ -81,15 +81,14 @@ Now that we have specified a model to estimate we need to find the best paramete
 ugfit = ugarchfit(spec = ug_spec, data = return)
 ```
 
-### Model Set up
+*Model Set up*
 Here we assume that we are using the same univariate volatility model specification for each of the three assets.
 
-### DCC (MVN)
+*DCC (MVN)*
 
 ```{r}
 uspec.n = multispec(replicate(3, ugarchspec(mean.model = list(armaOrder = c(1,0)))))
 ```
-
 
 We now estimate these univariate GARCH models using the multifit command.
 
@@ -105,7 +104,8 @@ spec1 = dccspec(uspec = uspec.n, dccOrder = c(1, 1), distribution = 'mvnorm')
 
 In this specification we have to state how the univariate volatilities are modeled (as per uspec.n) and how complex the dynamic structure of the correlation matrix is (here we are using the most standard dccOrder = c(1, 1) specification).
 
-### Model Estimation
+*Model Estimation*
+
 Now we are in a position to estimate the model using the dccfit function.
 
 ```{r}
@@ -116,7 +116,7 @@ We want to estimate the model as specified in spec1, using the data in rX. The o
 
 When you estimate a multivariate volatility model like the DCC model you are typically interested in the estimated covariance or correlation matrices. After all it is at the core of these models that you allow for time-variation in the correlation between the assets (there are also constant correlation models, but we do not discuss this here). Therefore we will now learn how we extract these.
 
-### Get the model based time varying covariance (arrays) and correlation matrices
+*Get the model based time varying covariance (arrays) and correlation matrices*
 
 ```{r}
 cov1 = rcov(fit1)  # extracts the covariance matrix
@@ -137,14 +137,13 @@ Let's have a look at the correlation matrix for the last day, day 2853;
 ```{r}
 cor1[,,dim(cor1)[3]]
 ```
+
 ```{r}
          STOXX50     DAX30     CAC40
 STOXX50 1.0000000 0.9754082 0.9863061
 DAX30   0.9754082 1.0000000 0.9571282
 CAC40   0.9863061 0.9571282 1.0000000
 ```
-
-
 So let's say we want to plot the time-varying correlation between Google and BP, which is 0.275244 on that last day. In our matrix with returns rX BP is the second asset and Google the 3rd. So in any particular correlation matrix we want the element in row 2 and column 3.
 
 ```{r}
@@ -159,7 +158,7 @@ plot(cor_BG)
 
 ![cor_BG](https://user-images.githubusercontent.com/47462688/81700237-50b48300-9460-11ea-8074-1f24f9dedddb.PNG)
 
-### Pre analysis
+*Pre analysis*
 Import Pilot data
 
 ```{r}
@@ -223,5 +222,5 @@ plot(as.xts(cor1[2,3,]),main="DAX30 & CAC40")
 
 
 
-### References
+## References
 PennState: Statistics Online Courses. 2020. ARCH/GARCH Models | STAT 510. [online] Available at: <https://online.stat.psu.edu/stat510/lesson/11/11.1>.
