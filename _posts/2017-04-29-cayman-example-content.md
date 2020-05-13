@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "DCC-GARCH"
+title: "Volatility with ARCH and GARCH for Time Series Forecasting in R"
 ---
 
 *Introduction: ARCH & GARCH Models*
