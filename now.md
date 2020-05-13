@@ -1,6 +1,6 @@
 ---
 layout: page
-title: ashiq
+title: Ashiq Zaman
 tagline: 
 permalink: /now.html
 ref: now
