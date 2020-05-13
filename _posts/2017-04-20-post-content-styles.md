@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Post content styles"
+title: "Stochastic Calculus"
 tagline: "Stochastic Calculus"
 categories: junk
 image: /thumbnail-mobile.png
