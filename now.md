@@ -17,6 +17,162 @@ where Δ represents the first difference operator, m represents the number of la
 
 Before doing ADF test it assumes that the error terms of the model are statistically significant, and it has a constant variance. 
 
+*Import Pilot data from a CSV file (preloaded data from Thomson Reuters datastream)*
+
+```{r}
+price<-read.csv("price.csv")
+```
+
+*Changes the dates as factors to actual dates*
+
+```{r}
+library(zoo)
+price.zoo=zoo(price[,-1], order.by=as.Date(strptime(as.character(price[,1]), "%d/%m/%Y")))
+head(price.zoo)
+
+          STOXX50    DAX30    CAC40     Russell1000
+2010-01-01 7.994619 8.692394 8.278004    7.070286
+2010-01-04 8.012283 8.707533 8.297536    7.086295
+2010-01-05 8.010479 8.704811 8.297272    7.089636
+2010-01-06 8.009582 8.705220 8.298457    7.090651
+2010-01-07 8.008811 8.702736 8.300230    7.094652
+2010-01-08 8.012300 8.705764 8.305271    7.097789
+```
+*given each series a name*
+
+```{r}
+stoxx<- price.zoo[,1]
+dax30<- price.zoo[,2]
+cac40<- price.zoo[,3]
+russell<- price.zoo[,4]
+```
+
+*Load urca to run ADF test:
+
+```{r}
+library(urca)
+```
+
+*Run ADF test with one lag with lag selection AIC neither an intercept nor a trend is included in the test regression
+
+```{r}
+adf.stoxx.none<-ur.df(stoxx,type = c("none"),lags = 1, selectlags = "AIC")
+summary(adf.stoxx.none)
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.132369 -0.005705  0.000096  0.006212  0.098561 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+z.lag.1    -4.057e-06  3.132e-05  -0.130    0.897
+z.diff.lag  1.461e-03  1.926e-02   0.076    0.940
+
+Residual standard error: 0.01304 on 2695 degrees of freedom
+Multiple R-squared:  8.361e-06,	Adjusted R-squared:  -0.0007337 
+F-statistic: 0.01127 on 2 and 2695 DF,  p-value: 0.9888
+
+
+Value of test-statistic is: -0.1295 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.58 -1.95 -1.62
+```
+
+*Run ADF test with one lag with lag selection AIC: with drift*
+
+```{r}
+adf.stoxx.drift<-ur.df(stoxx,type = c("drift"), lags = 1, selectlags = "AIC")
+summary(adf.stoxx.drift)
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression drift 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + z.diff.lag)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.132557 -0.005590  0.000417  0.006275  0.097817 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)  
+(Intercept)  0.034597   0.014392   2.404   0.0163 *
+z.lag.1     -0.004319   0.001795  -2.406   0.0162 *
+z.diff.lag   0.003630   0.019263   0.188   0.8506  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.01303 on 2694 degrees of freedom
+Multiple R-squared:  0.002146,	Adjusted R-squared:  0.001405 
+F-statistic: 2.897 on 2 and 2694 DF,  p-value: 0.05537
+
+
+Value of test-statistic is: -2.4058 2.8977 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau2 -3.43 -2.86 -2.57
+phi1  6.43  4.59  3.78
+```
+
+*Run ADF test with one lag with lag selection AIC: with trend*
+
+```{r}
+adf.stoxx.trend<-ur.df(stoxx,type = c("trend"), lags = 1, selectlags = "AIC")
+summary(adf.stoxx.trend)
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.134032 -0.005497  0.000497  0.006237  0.098413 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  6.509e-02  2.001e-02   3.252  0.00116 **
+z.lag.1     -8.291e-03  2.551e-03  -3.250  0.00117 **
+tt           1.003e-06  4.580e-07   2.190  0.02858 * 
+z.diff.lag   5.842e-03  1.928e-02   0.303  0.76186   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.01302 on 2693 degrees of freedom
+Multiple R-squared:  0.00392,	Adjusted R-squared:  0.002811 
+F-statistic: 3.533 on 3 and 2693 DF,  p-value: 0.01422
+
+
+Value of test-statistic is: -3.2503 3.5338 5.2968 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -3.96 -3.41 -3.12
+phi2  6.09  4.68  4.03
+phi3  8.27  6.25  5.34
+```
 
 ### Philipps-Perron
 
@@ -28,11 +184,13 @@ The Phillips-Perron (PP) test is conducted based on the equation (4.2)
 
 where Δ represents first difference operator, β represents constant and µt represents error term. Equation (4.2a), (4.2b) and (4.2c) represents PP without constant and time trend, with constant and with constant and time trend accordingly. 
 
+
 ### KPSS
 
 The KPSS test, short for, Kwiatkowski-Phillips-Schmidt-Shin (KPSS), is a type of Unit root test that tests for the stationarity of a given series around a deterministic trend.
 
 *Read data as CSV file*
+
 ```{r}
 kpss<-read.csv("kpss_before.csv")
 head(kpss)
