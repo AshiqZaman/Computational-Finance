@@ -67,4 +67,11 @@ If any test result gives co-integration of selected markets, then it indicates t
 where, Δ represents first difference operator and ε1t  and ε2t  represents the two disturbance terms of two stock markets indices. n represents the number of lag lengths. In this test the X2 (= F-test) is used to conduct the test. If the test gives the result of rejection of null hypothesis then it can be conclude that the two stock market indices xt and yt are co-integrated. In addition with it can also be said that either xt granger cause yt or yt granger cause xt (Roca,1999).
 
 
+### Runs and variance Ratio test
 
+This study also investigates the weak form market efficiency of selected stock markets. To investigate the individual weak form efficiency of UK stock market and other selected stock market stock indices two more test will used called Runs test and Variance Ratio test. Run test is used to check whether the stock market return is random or not. The Run test is a nonparametric test. The main idea of Run test is if a time series data is random then actual number of runs should be near to expected number of runs . According to Run test the expected number of runs is calculated as follows
+
+
+### Reference
+
+will follow later
