@@ -38,7 +38,62 @@ chartSeries(IBM, theme="white",TA="addVo();addBBands();addCCI()")
 
 ![quant 2](https://user-images.githubusercontent.com/47462688/81946384-352fb080-95f7-11ea-82f1-eb73f4d87387.JPG)
 
-#### Calculating Returns
+To calcualte return of IBM stock price, we need to create new object with calculated returns using closing price with log return of stock price.
+
+*rt= ln(Pt)-ln(Pt-1)*
+
+
+```{r}
+IBM_ret<-diff(log(IBM[,4]))
+IBM_ret<-IBM_ret[,1]
+head(IBM_ret)
+
+             IBM.Close
+2013-01-02           NA
+2013-01-03 -0.005515575
+2013-01-04 -0.006576600
+2013-01-07 -0.004391328
+2013-01-08 -0.001398948
+2013-01-09 -0.002855673
+```
+
+we can visulaize calcualted return: 
+
+```{r}
+plot(IBM_ret)
+```
+![return 1](https://user-images.githubusercontent.com/47462688/81949564-e6841580-95fa-11ea-889e-e83ce5e7e473.JPG)
+
+It is possible to caluate return by using quantmood:
+
+```{r}
+daily.ret.IBM<-dailyReturn(IBM)
+head(daily.ret.IBM)
+
+ daily.returns
+2013-01-02   0.011644134
+2013-01-03  -0.005500392
+2013-01-04  -0.006555021
+2013-01-07  -0.004381700
+2013-01-08  -0.001397970
+2013-01-09  -0.002851600
+```
+To plot the calcualted daily return 
+
+```{r}
+chart_Series(daily.ret.IBM)
+```
+
+![ret 2](https://user-images.githubusercontent.com/47462688/81949579-e97f0600-95fa-11ea-8907-36e4960ea736.JPG)
+
+It is also possible to calcuate other returns also 
+
+```{r}
+weekly.ret.IBM<-weeklyReturn(IBM)
+monthly.ret.IBM<-monthlyReturn(IBM)
+quartely.ret.IBM<-quarterlyReturn(IBM)
+yearly.ret.IBM<-yearlyReturn(IBM)
+```
 
 #### Loading pre-downloaded data and converting them into TimeSeries
 
