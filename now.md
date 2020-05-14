@@ -18,8 +18,16 @@ where Δ represents the first difference operator, m represents the number of la
 Before doing ADF test it assumes that the error terms of the model are statistically significant, and it has a constant variance. 
 
 
-### KPSS
-
-
 ### Philipps-Perron
 
+In Phillips-Perron test it makes the error terms weakly dependent and another properties of this test is the error terms are heterogeneously distributed. 
+
+The Phillips-Perron (PP) test is conducted based on the equation (4.2)
+
+![unit pp](https://user-images.githubusercontent.com/47462688/81879712-6f5f6a80-9583-11ea-845b-80d2481d700d.JPG)
+
+where Δ represents first difference operator, β represents constant and µt represents error term. Equation (4.2a), (4.2b) and (4.2c) represents PP without constant and time trend, with constant and with constant and time trend accordingly. 
+
+### KPSS
+
+The KPSS test, short for, Kwiatkowski-Phillips-Schmidt-Shin (KPSS), is a type of Unit root test that tests for the stationarity of a given series around a deterministic trend.
