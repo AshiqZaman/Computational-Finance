@@ -71,6 +71,23 @@ where, Δ represents first difference operator and ε1t  and ε2t  represents th
 
 This study also investigates the weak form market efficiency of selected stock markets. To investigate the individual weak form efficiency of UK stock market and other selected stock market stock indices two more test will used called Runs test and Variance Ratio test. Run test is used to check whether the stock market return is random or not. The Run test is a nonparametric test. The main idea of Run test is if a time series data is random then actual number of runs should be near to expected number of runs . According to Run test the expected number of runs is calculated as follows
 
+![run 1](https://user-images.githubusercontent.com/47462688/81881894-404bf780-9589-11ea-9a1d-160e81fd7c2a.JPG)
+	
+where i= 1,2, 3,4----------------n
+
+If the number of observations is larger than 30 then the expected numbers of runs are about normally distributed with σm standard deviation. The σm is calculated as follows
+
+![r 2](https://user-images.githubusercontent.com/47462688/81882045-a46ebb80-9589-11ea-9c15-fa8ad9ea519d.JPG)
+
+It is possible to convert the runs into Z- statistics. If the calculated Z- statistics is greater than 1.96 then it rejects the null hypothesis at 5% significance level. Then the equation can be written as 
+
+![run 3](https://user-images.githubusercontent.com/47462688/81882061-ae90ba00-9589-11ea-93cf-7043f9249f06.JPG)
+
+On the other hand, the variance ratio also used in this study. In 1988 Lo and Mackinlay proposed this test. This test states that "whether the increment of all three random walk hypothesis are linear function of time interval" (Lo and McKinlay, 1988). The variance ratio test is written as follows
+
+
+
+
 
 ### Reference
 
