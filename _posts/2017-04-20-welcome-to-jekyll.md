@@ -36,7 +36,7 @@ Use chartseries funciton of quantmod to visualise IBM.
 chartSeries(IBM)
 ```
 
-![quantmod 1](https://user-images.githubusercontent.com/47462688/81945651-488e4c00-95f6-11ea-942d-78badd4772f0.JPG)
+![quant 2](https://user-images.githubusercontent.com/47462688/81946384-352fb080-95f7-11ea-82f1-eb73f4d87387.JPG)
 
 #### Calculating Returns
 
