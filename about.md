@@ -19,7 +19,82 @@ where xt and yt are two different stock market indices. And et represents residu
 
 where γt = estimated parameters. εt = disturbance terms. To find out the long run relationship between markets, a hypothesis test is conducted on the coefficient (γt). If the results shows that the test statistics of the coefficients is greater than the critical value. Then it rejects the null hypothesis. So it could be conclude that the residual is stationary. This indicates that the markets are co-integrated in other word there is some linkages between the markets.      
 
+*read data at CSV file* 
 
+```{r}
+price<-read.csv("price.csv")
+head(price)
+```
+*1st step of Engle-granger test is to take OLS test*
+
+```{r}
+Engle.stoxx<-lm(STOXX50~DAX30, data = price)
+summary(Engle.stoxx)
+
+Call:
+lm(formula = STOXX50 ~ DAX30, data = price)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.193098 -0.044365  0.001703  0.036345  0.199596 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 3.716828   0.042085   88.32   <2e-16 ***
+DAX30       0.470479   0.004604  102.20   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.06339 on 2697 degrees of freedom
+Multiple R-squared:  0.7948,	Adjusted R-squared:  0.7947 
+F-statistic: 1.044e+04 on 1 and 2697 DF,  p-value: < 2.2e-16
+```
+
+*calcualte residual from OLS test and test unit root to finish second step of Engle Granger test*
+
+```{r}
+residual.stoxx<-resid(Engle.stoxx)
+library(urca)
+adf.residual.stoxx<-ur.df(residual.stoxx,type = c("trend"),lags = 1)
+summary(adf.residual.stoxx)
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.071546 -0.003404  0.000255  0.003716  0.074266 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  1.640e-05  2.978e-04   0.055 0.956094    
+z.lag.1     -8.524e-03  2.372e-03  -3.594 0.000331 ***
+tt          -1.018e-07  1.924e-07  -0.529 0.596608    
+z.diff.lag  -7.860e-03  1.925e-02  -0.408 0.683010    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.007558 on 2693 degrees of freedom
+Multiple R-squared:  0.004948,	Adjusted R-squared:  0.003839 
+F-statistic: 4.464 on 3 and 2693 DF,  p-value: 0.003919
+
+
+Value of test-statistic is: -3.5941 4.5738 6.5133 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -3.96 -3.41 -3.12
+phi2  6.09  4.68  4.03
+phi3  8.27  6.25  5.34
+
+```
 
 ### Johansen (1988,1991) Bivariate and Multivariate Co-integration Test
 
