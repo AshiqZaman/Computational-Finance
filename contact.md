@@ -11,3 +11,5 @@ order: 1
 
 
 Email: ashiq.zaman@outlook.com
+
+LinkedIn: www.linkedin.com/in/ashiqzaman/
