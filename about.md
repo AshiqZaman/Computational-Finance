@@ -34,7 +34,9 @@ The Vector Auto Regression (VAR) model which is equation (4.5) can be written as
 ![jh 2](https://user-images.githubusercontent.com/47462688/81881217-7daf8580-9587-11ea-807f-f7963599133f.JPG)
 
 The co-efficient matrix Π from the equation (4.6) has reduced rank r which is less than n then existing n×r matrices denoted α and β each with rank r can be written as follows
-	          Π= αβ' ---------------------------------------------(4.7)
+	        
+		Π= αβ' ---------------------------------------------(4.7)
+		
 where α=n×1, is a column vector which represents the pace of short-run correction to disequilibrium. In addition , β' = 1×n, is co-integrating row vector which stand for the long run co-efficient matrix. 
 
 Johansen proposed two different maximum likelihood ratio test denoted as follows
