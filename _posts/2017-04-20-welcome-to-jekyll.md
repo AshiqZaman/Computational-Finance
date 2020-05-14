@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Introduction to Stock Analysis with R"
+tagline: "Ashiq Zaman"
 ---
 
 Firstly, we install and load the necessary packages.To analyse stock data and to get stock data from the internet, we will use quantmod and ggplot2. Firstly, we install and load the necessary packages.
