@@ -143,7 +143,30 @@ ggplot(stoxx,aes(Time,Indices))+geom_line(aes(color="STOXX50"))+geom_line(data=C
 
 ### Moving Averages
 
+Calculating 10 day & 20 day moving average of IBM closing stock price: Calculates the arithmetic mean of the series over the past n observations.
 
+```{r}
+IBM_MA10<-SMA(IBM[,4,n=10]) # 10 day moving average
+IBM_MA20<-SMA(IBM[,4],n=20) # 20 day moving average
+plot(IBM_MA10)
+plot(IBM_MA20)
+```
 
+![MA 10](https://user-images.githubusercontent.com/47462688/81986562-f1a56880-962f-11ea-826c-93e250255f95.JPG)
+
+![MA20](https://user-images.githubusercontent.com/47462688/81986573-f4a05900-962f-11ea-8abc-8b0b116f88fa.JPG)
+
+Exponential moving average. calculates an exponentially-weighted mean, giving more weight to recent observations.
+
+```{r}
+IBM_EMA10<-EMA(IBM[,4,n=10]) # 10 day Exponential moving average
+IBM_EMA20<-EMA(IBM[,4],n=20) # 20 day Exponential moving average
+plot(IBM_MA10)
+plot(IBM_MA20)
+```
+
+![SMA 1](https://user-images.githubusercontent.com/47462688/81986994-c3745880-9630-11ea-83e2-061106673a18.JPG)
+
+![SMA 2](https://user-images.githubusercontent.com/47462688/81986996-c40cef00-9630-11ea-88e3-732604dc4a62.JPG)
 
 ### References
