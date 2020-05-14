@@ -184,6 +184,85 @@ The Phillips-Perron (PP) test is conducted based on the equation (4.2)
 
 where Δ represents first difference operator, β represents constant and µt represents error term. Equation (4.2a), (4.2b) and (4.2c) represents PP without constant and time trend, with constant and with constant and time trend accordingly. 
 
+*Run PP test with Z alpha type and model constant* 
+
+```{r}
+pp.stoxx.constant<-ur.pp(stoxx, type = c("Z-alpha"), model = c("constant"), lags = c("short"))
+summary(pp.stoxx.constant)
+
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.132568 -0.005588  0.000428  0.006275  0.097654 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.034534   0.014376   2.402   0.0164 *  
+y.l1        0.995690   0.001793 555.284   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.01303 on 2696 degrees of freedom
+Multiple R-squared:  0.9913,	Adjusted R-squared:  0.9913 
+F-statistic: 3.083e+05 on 1 and 2696 DF,  p-value: < 2.2e-16
+
+
+Value of test-statistic, type: Z-alpha  is: -11.1338 
+
+         aux. Z statistics
+Z-tau-mu            2.3502
+```
+
+*Run PP test with Z alpha type and model trend:* 
+
+```{r}
+pp.stoxx.trend<-ur.pp(stoxx, type = c("Z-alpha"), model = c("trend"), lags = c("short"))
+summary(pp.stoxx.trend)
+
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept and trend 
+
+
+Call:
+lm(formula = y ~ y.l1 + trend)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.133993 -0.005497  0.000497  0.006216  0.098137 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 6.514e-02  2.039e-02   3.195  0.00142 ** 
+y.l1        9.919e-01  2.544e-03 389.950  < 2e-16 ***
+trend       9.665e-07  4.569e-07   2.115  0.03449 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.01302 on 2695 degrees of freedom
+Multiple R-squared:  0.9913,	Adjusted R-squared:  0.9913 
+F-statistic: 1.544e+05 on 2 and 2695 DF,  p-value: < 2.2e-16
+
+
+Value of test-statistic, type: Z-alpha  is: -21.3576 
+
+           aux. Z statistics
+Z-tau-mu              3.3191
+Z-tau-beta            2.0785
+
+```
+
 
 ### KPSS
 
