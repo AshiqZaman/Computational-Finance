@@ -33,7 +33,7 @@ head(IBM)
 Use chartseries funciton of quantmod to visualise IBM. 
 
 ```{r}
-chartSeries(IBM)
+chartSeries(IBM, theme="white",TA="addVo();addBBands();addCCI()")
 ```
 
 ![quant 2](https://user-images.githubusercontent.com/47462688/81946384-352fb080-95f7-11ea-82f1-eb73f4d87387.JPG)
