@@ -97,7 +97,49 @@ yearly.ret.IBM<-yearlyReturn(IBM)
 
 #### Loading pre-downloaded data and converting them into TimeSeries
 
+Import Pilot data from a CSV file (preloaded data from Thomson Reuters datastream and use logarithm).
+
+```{r}
+price<-read.csv("price.csv")
+head(price)
+```
+
+Change the dates as factors to actual dates
+
+```{r}
+price[,1]<-as.Date(price[,1],tz="UTC", format = "%d/%m/%Y")
+head(price)
+```
+
+![h 1](https://user-images.githubusercontent.com/47462688/81950700-34e5e400-95fc-11ea-8ea7-bc9e04b92009.JPG)
+
 #### Visualizing Stock Data
+
+use ggplot2  to plot STOXX50
+
+```{r}
+library(ggplot2)
+ggplot(price,aes(Date,STOXX50))+geom_line()+xlab("Year")+ylab("Index")
+```
+
+![stock price 1](https://user-images.githubusercontent.com/47462688/81951070-a0c84c80-95fc-11ea-9922-a651e19acacd.JPG)
+
+multiple series in the same graph using ggplot
+
+data frame each series
+
+```{R}
+stoxx<-data.frame(Time=price$Date, Indices=price$STOXX50)
+CAC40<-data.frame(Time=price$Date,Indices=price$CAC40)
+dax30<-data.frame(Time=price$Date, Indices=price$DAX30)
+russell<-data.frame(Time=price$Date, Indices=price$Russell1000)
+```
+
+```{r}
+ggplot(stoxx,aes(Time,Indices))+geom_line(aes(color="STOXX50"))+geom_line(data=CAC40,aes(color="CAC40"))+geom_line(data=dax30,aes(color="DAX30"))+ geom_line(data = russell,aes(color="Russell1000"))+ ggtitle("Stock Prices: STOXX50, DAX30, CAC40 & Russell1000")+theme(plot.title = element_text(hjust = 0.5))+ scale_x_date(date_labels = "%b %y", date_breaks = "6 months")+labs(color="Country")
+```
+
+![st 2](https://user-images.githubusercontent.com/47462688/81951359-f8ff4e80-95fc-11ea-888c-f3b962a6e109.JPG)
 
 ### Moving Averages
 
