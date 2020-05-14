@@ -169,4 +169,4 @@ plot(IBM_MA20)
 
 ![SMA 2](https://user-images.githubusercontent.com/47462688/81986996-c40cef00-9630-11ea-88e3-732604dc4a62.JPG)
 
-### References
+
