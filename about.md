@@ -85,6 +85,14 @@ It is possible to convert the runs into Z- statistics. If the calculated Z- stat
 
 On the other hand, the variance ratio also used in this study. In 1988 Lo and Mackinlay proposed this test. This test states that "whether the increment of all three random walk hypothesis are linear function of time interval" (Lo and McKinlay, 1988). The variance ratio test is written as follows
 
+![v1](https://user-images.githubusercontent.com/47462688/81882337-6aea8000-958a-11ea-9185-1a4e33a63c64.JPG)
+
+where σ2(q) represents unbiased estimator of 1/q of the variance of q- period returns and
+σ2(1) represents unbiased estimator of 1/q of the variance of 1- period returns. There are two statistics in VR test and these are Z(q) and Z*(q). The null hypothesis of Z(q) is homoskedasticity and the null hypothesis of Z*(q) is heteroskedasticity. Now it can be rewrite as
+
+![v 2](https://user-images.githubusercontent.com/47462688/81882407-98cfc480-958a-11ea-803f-4e8f5cb55e3b.JPG)
+
+here if the calculated Z-statistics is greater than 1.96 then it rejects the null hypothesis.  at 5% significance level. 
 
 
 
