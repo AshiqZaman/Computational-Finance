@@ -126,6 +126,91 @@ On the other hand the Maximum Eigen Value test λmax tests the null hypothesis o
 
 From the equation (4.8) and (4.9) T represents sample size and λ ̂(_j^ ) represents estimated values of characteristic root ranked from largest to smallest.    
 
+*We can now perform the Johansen test on the  logarith daily price series and output the summary of the test: With trace test type*
+
+```{r}
+jotest.price.trace<-ca.jo(price[,c("STOXX50","DAX30","CAC40","Russell1000")], type=c("trace"), K=2, ecdet=c("none"), spec=c("longrun"),season = NULL, dumvar = NULL)
+summary(jotest.price.trace)
+
+
+###################### 
+# Johansen-Procedure # 
+###################### 
+
+Test type: trace statistic , with linear trend 
+
+Eigenvalues (lambda):
+[1] 0.006652944 0.004878674 0.002355921 0.001285875
+
+Values of teststatistic and critical values of test:
+
+          test 10pct  5pct  1pct
+r <= 3 |  3.47  6.50  8.18 11.65
+r <= 2 |  9.83 15.66 17.95 23.52
+r <= 1 | 23.02 28.71 31.52 37.22
+r = 0  | 41.02 45.23 48.28 55.43
+
+Eigenvectors, normalised to first column:
+(These are the cointegration relations)
+
+               STOXX50.l2   DAX30.l2    CAC40.l2 Russell1000.l2
+STOXX50.l2      1.0000000  1.0000000  1.00000000       1.000000
+DAX30.l2       -0.6992685 -0.5909108  0.09304002      -4.919011
+CAC40.l2       -0.3361010 -1.2006345 -1.08319298       2.394870
+Russell1000.l2  0.3459827  0.7165897  0.14706331       4.337408
+
+Weights W:
+(This is the loading matrix)
+
+                STOXX50.l2     DAX30.l2      CAC40.l2 Russell1000.l2
+STOXX50.d     -0.013676027  0.013077195 -0.0028363648  -0.0003794127
+DAX30.d       -0.006350745  0.013369343 -0.0040456884  -0.0004371413
+CAC40.d       -0.013452692  0.011928001  0.0001995051  -0.0004257001
+Russell1000.d -0.009616529 -0.001486424 -0.0055048756  -0.0004753761
+```
+
+*We can now perform the Johansen test on the  logarith daily price series and output the summary of the test:  test typ eigene*
+
+```{r}
+jotest.price.eigen<-ca.jo(price[,c("STOXX50","DAX30","CAC40","Russell1000")], type=c("eigen"), K=2, ecdet=c("none"), spec=c("longrun"),season = NULL, dumvar = NULL)
+summary(jotest.price.eigen)
+
+###################### 
+# Johansen-Procedure # 
+###################### 
+
+Test type: maximal eigenvalue statistic (lambda max) , with linear trend 
+
+Eigenvalues (lambda):
+[1] 0.006652944 0.004878674 0.002355921 0.001285875
+
+Values of teststatistic and critical values of test:
+
+          test 10pct  5pct  1pct
+r <= 3 |  3.47  6.50  8.18 11.65
+r <= 2 |  6.36 12.91 14.90 19.19
+r <= 1 | 13.19 18.90 21.07 25.75
+r = 0  | 18.00 24.78 27.14 32.14
+
+Eigenvectors, normalised to first column:
+(These are the cointegration relations)
+
+               STOXX50.l2   DAX30.l2    CAC40.l2 Russell1000.l2
+STOXX50.l2      1.0000000  1.0000000  1.00000000       1.000000
+DAX30.l2       -0.6992685 -0.5909108  0.09304002      -4.919011
+CAC40.l2       -0.3361010 -1.2006345 -1.08319298       2.394870
+Russell1000.l2  0.3459827  0.7165897  0.14706331       4.337408
+
+Weights W:
+(This is the loading matrix)
+
+                STOXX50.l2     DAX30.l2      CAC40.l2 Russell1000.l2
+STOXX50.d     -0.013676027  0.013077195 -0.0028363648  -0.0003794127
+DAX30.d       -0.006350745  0.013369343 -0.0040456884  -0.0004371413
+CAC40.d       -0.013452692  0.011928001  0.0001995051  -0.0004257001
+Russell1000.d -0.009616529 -0.001486424 -0.0055048756  -0.0004753761
+```
+
 
 ### Gregory-Hansen Test
 
