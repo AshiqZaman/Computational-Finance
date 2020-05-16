@@ -13,7 +13,7 @@ library(ggplot2)
 ```
 
 ### Getting and Visualizing Stock Data
-#### Getting Data with quantmod from Yahoo! Finance
+**Getting Data with quantmod from Yahoo! Finance**
 
 To get data from internet we can use quantmod and use getSymbols function. where IBM is the sticker symbol of company IBM from Yahoo Finance of the stock that we're going to analyse.The argument src= "yahoo" indicates the source of the data. The third and fourth arguments indicate the time period in which the data is going to be extracted, with data in the format “yyyy-mm-dd”.
 
