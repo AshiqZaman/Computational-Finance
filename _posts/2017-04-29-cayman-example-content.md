@@ -4,15 +4,17 @@ title: "Volatility with ARCH and GARCH for Time Series Forecasting in R"
 tagline: Ashiq Zaman
 ---
 
-*Introduction: ARCH & GARCH Models*
+**Introduction: ARCH & GARCH Models**
 
 An ARCH (autoregressive conditionally heteroscedastic) model is a model for the variance of a time series. ARCH models are used to describe a changing, possibly volatile variance. Although an ARCH model could possibly be used to describe a gradually increasing variance over time, most often it is used in situations in which there may be short periods of increased variation. (Gradually increasing variance connected to a gradually increasing mean level might be better handled by transforming the variable.)
 
 *Multivariate GARCH Models*
 
-In line with Engle (2002), the DCC-GARCH can be presented as follows:
+* In line with Engle (2002), the DCC-GARCH can be presented as follows:
 
 ![dcc equation](https://user-images.githubusercontent.com/47462688/81708341-0e437400-9469-11ea-8cc4-d1f824c04e59.PNG)
+
+
 
 *Import Pilot data*
 
