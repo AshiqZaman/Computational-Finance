@@ -419,6 +419,94 @@ summary(kpss.uk.trend.diff)
 ## critical values 0.119 0.146  0.176 0.216
 ```
 
+### Zivot-Andrews Test to analyze the presense of a unit root & structural break
+
+**Read data from CSV file**
+
+```{r}
+price<-read.csv("price.csv")
+```
+
+**Converting the data into time series by using zoo package**
+
+```{r}
+library(zoo)
+price.zoo=zoo(price[,-1], order.by=as.Date(strptime(as.character(price[,1]), "%d/%m/%Y")))
+head(price.zoo)
+
+            STOXX50    DAX30    CAC40 Russell1000
+2010-01-01 7.994619 8.692394 8.278004    7.070286
+2010-01-04 8.012283 8.707533 8.297536    7.086295
+2010-01-05 8.010479 8.704811 8.297272    7.089636
+2010-01-06 8.009582 8.705220 8.298457    7.090651
+2010-01-07 8.008811 8.702736 8.300230    7.094652
+2010-01-08 8.012300 8.705764 8.305271    7.097789
+```
+
+**Assign each stock index into a new time series to prepare for analysis**
+
+```{r}
+stoxx<- price.zoo[,1]
+dax30<- price.zoo[,2]
+cac40<- price.zoo[,3]
+russell<- price.zoo[,4]
+```
+
+*Load all necessary r packages*
+
+```{r}
+library(urca)
+```
+
+The Zivot-Adrews test to analyze the presence of unit root and structural break in the data set.If the unit root tests find that a series contain one unit root, the appropriate route in this case is to transform the data by differencing the variables prior to their inclusion in the regression model, but this incurs a loss of important long-run information.it facilitates the analysis of whether a structural break on a certain variable is associated with a particular event such as a change in government policy, a currency crisis, war and so forth. The Zivot-Andrews test only allow for one structural break. In Zivot-Andrews test a break date will be chosen where the evidence is least favorable for the unit root null. In the Zivot-Andrews tests, the null hypothesis is that the series has a unit root with structural break(s) against the alternative hypothesis that they are stationary with break(s). REject Null if t-value statistic is lower than tabulated critical value (left tailed test).
+
+```{r}
+stoxx.za.intercept <- ur.za(stoxx, model=c("intercept"), lag=1)
+summary(stoxx.za.intercept)
+
+################################ 
+# Zivot-Andrews Unit Root Test # 
+################################ 
+
+
+Call:
+lm(formula = testmat)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.126906 -0.005678  0.000379  0.006237  0.098449 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  9.316e-02  2.096e-02   4.445 9.14e-06 ***
+y.l1         9.881e-01  2.674e-03 369.480  < 2e-16 ***
+trend        1.831e-06  4.942e-07   3.704 0.000216 ***
+y.dl1        2.555e-03  1.923e-02   0.133 0.894292    
+du          -8.533e-03  1.954e-03  -4.366 1.31e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.01298 on 2692 degrees of freedom
+  (2 observations deleted due to missingness)
+Multiple R-squared:  0.9914,	Adjusted R-squared:  0.9914 
+F-statistic: 7.771e+04 on 4 and 2692 DF,  p-value: < 2.2e-16
+
+
+Teststatistic: -4.4545 
+Critical values: 0.01= -5.34 0.05= -4.8 0.1= -4.58 
+
+Potential break point at position: 2646 
+
+```
+
+The Zivot-Andrews test suggests that there is break in data trend at observation number 2646.The T-statistics of Z-A test is lower than critical value (in absolute value), REJECTING Null hypothesis of unit root. The data has structure break at 20 February 2020.
+
+*Plot the Unit root test to visualise data*
+
+```{r}
+plot(stoxx.za.intercept)
+```
+
 ### References
 
 will be added soon
