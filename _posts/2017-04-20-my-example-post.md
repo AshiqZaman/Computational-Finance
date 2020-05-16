@@ -17,3 +17,9 @@ I'm going to implement a Bayesian approach linear regression in R from scratch a
 **Bootstrapping Financial Time Series**
 
 In statistics, bootstrapping is any test or metric that relies on random sampling with replacement.
+
+
+
+
+
+**References**
