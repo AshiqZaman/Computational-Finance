@@ -12,36 +12,113 @@ library(quantmod)
 library(ggplot2)
 ```
 
+```{r}
+library(quantmod)
+library(xts)
+library(rvest)
+library(tidyverse)
+library(stringr)
+library(forcats)
+library(lubridate)
+library(plotly)
+library(dplyr)
+library(PerformanceAnalytics)
+```
+
 ### Getting and Visualizing Stock Data
 **Getting Data with quantmod from Yahoo! Finance**
 
 To get data from internet we can use quantmod and use getSymbols function. where IBM is the sticker symbol of company IBM from Yahoo Finance of the stock that we're going to analyse.The argument src= "yahoo" indicates the source of the data. The third and fourth arguments indicate the time period in which the data is going to be extracted, with data in the format “yyyy-mm-dd”.
 
+
+Log return data of Amazon, Google, Apple, Facebook and IBM stock between Jan 2010 and May 2020:
+
 ```{r}
-IBM<- getSymbols("IBM", src = "yahoo", from = "2013-01-01", to = "2020-05-01", auto.assign = FALSE)
+getSymbols("AMZN",from="2010-01-01",to="2020-05-16")
+AMZN_log_returns<-AMZN%>%Ad()%>%dailyReturn(type='log')
+
+getSymbols("GOOGL",from="2010-01-01",to="2020-05-16")
+GOOGL_log_returns<-GOOGL%>%Ad()%>%dailyReturn(type='log')
+
+getSymbols("AAPL",from="2010-01-01",to="2020-05-16")
+AAPL_log_returns<-AAPL%>%Ad()%>%dailyReturn(type='log')
+
+getSymbols("FB",from="2008-01-01",to="2020-05-16")
+FB_log_returns<-FB%>%Ad()%>%dailyReturn(type='log')
+
+getSymbols("IBM",from="2010-01-01",to="2020-05-16")
+IBM_log_returns<-IBM%>%Ad()%>%dailyReturn(type='log')
+
+
+[1] "AMZN"
+[1] "GOOGL"
+[1] "AAPL"
+[1] "FB"
+[1] "IBM"
+
+```
+
+Sample data: 
+
+```{r}
 head(IBM)
 
-  IBM.Open IBM.High IBM.Low IBM.Close IBM.Volume IBM.Adjusted
-2013-01-02   194.09   196.35  193.80    196.35    4234100     147.9810
-2013-01-03   195.67   196.29  194.44    195.27    3644700     147.1670
-2013-01-04   194.19   194.46  192.78    193.99    3380200     146.2024
-2013-01-07   193.40   193.78  192.34    193.14    2862300     145.5618
-2013-01-08   192.92   193.30  191.60    192.87    3026900     145.3583
-2013-01-09   193.48   193.49  191.65    192.32    3212000     144.9438
+            IBM.Open IBM.High IBM.Low IBM.Close IBM.Volume IBM.Adjusted
+2010-01-04   131.18   132.97  130.85    132.45    6155300     94.72456
+2010-01-05   131.68   131.85  130.10    130.85    6841400     93.58028
+2010-01-06   130.68   131.49  129.81    130.00    5605300     92.97238
+2010-01-07   129.87   130.25  128.91    129.55    5840600     92.65054
+2010-01-08   129.07   130.92  129.05    130.85    4197200     93.58028
+2010-01-11   131.06   131.06  128.67    129.48    5730400     92.60048
 ```
 
-Use chartseries funciton of quantmod to visualise IBM. 
+
+**Technical Analysis:** Draw two charts where first chart is very straight forward as it shows IBM price chart and the second chart shows the Bollinger Band chart, % Bollinger change, Volume Traded and Moving Average Convergence Diverence in 2018 alone:
 
 ```{r}
-chartSeries(IBM, theme="white",TA="addVo();addBBands();addCCI()")
+AMZN%>%Ad()%>%chartSeries(theme = "white")
+AMZN%>%chartSeries(TA='addBBands();addVo();addMACD()', subset="2019",theme = "white")
+
+GOOGL%>%Ad()%>%chartSeries(theme = "white")
+GOOGL%>%chartSeries(TA='addBBands();addVo();addMACD()',subset="2019",theme = "white")
+
+AAPL%>%Ad()%>%chartSeries(theme = "white")
+AAPL%>%chartSeries(TA='addBBands();addVo();addMACD()',subset='2019', theme = "white")
+
+FB%>%Ad()%>%chartSeries(theme = "white")
+FB%>%chartSeries(TA='addBBands();addVo();addMACD()',subset='2019', theme = "white")
+
+IBM%>%Ad()%>%chartSeries(theme = "white")
+IBM%>%chartSeries(TA='addBBands();addVo();addMACD()',subset='2019', theme = "white")
+
 ```
 
-![quant 2](https://user-images.githubusercontent.com/47462688/81946384-352fb080-95f7-11ea-82f1-eb73f4d87387.JPG)
+![bolinger 1](https://user-images.githubusercontent.com/47462688/82132378-138d1f80-97d7-11ea-9dc1-c8c37d7901cc.JPG)
+
+![ibm 1](https://user-images.githubusercontent.com/47462688/82132381-1851d380-97d7-11ea-95f9-41b5e95ec7fd.JPG)
+
+The moving average is important to understand technical charts. It smoothes out daily price fluctuations by averaging stock prices and is effective in identifying potential trends.
+
+The Bollinger Band chart plots two standard deviations away from the moving average and is used to measure the stock’s volatiliy. The Volume chart shows how its stocks are traded on the daily. The Moving Average Convergence Divergence gives technical analysts buy/sell signals. The rule of thumb is: If it falls below the line, it is time to sell. If it rises above the line, it is experiencing an upward momentum.
+
+
+Diversify your investment alogn with Google, Facebook and Amazon:
+
+```{r}
+data<-cbind(diff(log(Cl(AMZN))),diff(log(Cl(GOOGL))),diff(log(Cl(AAPL))),diff(log(Cl(IBM))),diff(log(Cl(FB))))
+chart.Correlation(data)
+```
+
+![corr 1](https://user-images.githubusercontent.com/47462688/82132438-a463fb00-97d7-11ea-850b-4caf3ee5ac70.JPG)
+
+Facebook (FB) and IBM have the smallest correlation of 0.29 while Amazon (AMZN) and Google (GOOGL) have the highest correlation of 0.57. The correlation between each stocks is high because they are all technology stocks. 
+
+It is better to purchase stocks from different sectors to truly minimize the risk and maximize rates of return.
+
 
 To calcualte return of IBM stock price, we need to create new object with calculated returns using closing price with log return of stock price.
 
 *rt= ln(Pt)-ln(Pt-1)*
-
 
 ```{r}
 IBM_ret<-diff(log(IBM[,4]))
@@ -78,6 +155,7 @@ head(daily.ret.IBM)
 2013-01-08  -0.001397970
 2013-01-09  -0.002851600
 ```
+
 To plot the calcualted daily return 
 
 ```{r}
@@ -115,7 +193,7 @@ head(price)
 
 #### Visualizing Stock Data
 
-use ggplot2  to plot STOXX50
+*use ggplot2  to plot STOXX50*
 
 ```{r}
 library(ggplot2)
@@ -126,7 +204,7 @@ ggplot(price,aes(Date,STOXX50))+geom_line()+xlab("Year")+ylab("Index")
 
 multiple series in the same graph using ggplot
 
-data frame each series
+*data frame each series*
 
 ```{R}
 stoxx<-data.frame(Time=price$Date, Indices=price$STOXX50)
@@ -171,3 +249,5 @@ plot(IBM_MA20)
 
 
 **References**
+
+will add soon
