@@ -1,31 +1,36 @@
 ---
 layout: post
-title: "The Ordinary Least Squares Method and Simple Linear Regression"
+title: "Time Series Regression and Forecasting"
 categories: misc
 ---
 
 The purpose of econometric analysis is to estimate the model's parameters and test hypotheses about those parameters; the values and signs of the parameters can determine the validity (or not) of an economic theory, as well as the effects of certain policies and decisions.
 
-### Simple Regression Model
+**Linear Regression**
 
 
-#### OLS Regression in R
-
-*Examples of data and problem*
 
 
-*Visualization*
+**Ordinary Least Square (OLS)**
 
-*Computation*
 
-#### Interpretation
+**Regression Models for Forecasting**
 
-#### Regression line
 
-#### Model Summary
 
-*Coefficients significance*
+**Time Series Data and Serial Correlation**
 
-#### Model accuracy
+
+**The First-Order Autoregressive Model**
+
+
+**Out-of-Sample Forecasting**
+
+
+**Evaluating Forecasting Accuracy**
+
+
+**References**
+
 
 
