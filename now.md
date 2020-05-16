@@ -17,13 +17,13 @@ where Δ represents the first difference operator, m represents the number of la
 
 Before doing ADF test it assumes that the error terms of the model are statistically significant, and it has a constant variance. 
 
-*Import Pilot data from a CSV file (preloaded data from Thomson Reuters datastream)*
+**Import Pilot data from a CSV file (preloaded data from Thomson Reuters datastream)**
 
 ```{r}
 price<-read.csv("price.csv")
 ```
 
-*Changes the dates as factors to actual dates*
+**Changes the dates as factors to actual dates**
 
 ```{r}
 library(zoo)
@@ -38,7 +38,7 @@ head(price.zoo)
 2010-01-07 8.008811 8.702736 8.300230    7.094652
 2010-01-08 8.012300 8.705764 8.305271    7.097789
 ```
-*given each series a name*
+**Given each series a name**
 
 ```{r}
 stoxx<- price.zoo[,1]
@@ -47,13 +47,13 @@ cac40<- price.zoo[,3]
 russell<- price.zoo[,4]
 ```
 
-*Load urca to run ADF test:
+**Load urca to run ADF test**
 
 ```{r}
 library(urca)
 ```
 
-*Run ADF test with one lag with lag selection AIC neither an intercept nor a trend is included in the test regression
+**Run ADF test with one lag with lag selection AIC neither an intercept nor a trend is included in the test regression**
 
 ```{r}
 adf.stoxx.none<-ur.df(stoxx,type = c("none"),lags = 1, selectlags = "AIC")
@@ -90,7 +90,7 @@ Critical values for test statistics:
 tau1 -2.58 -1.95 -1.62
 ```
 
-*Run ADF test with one lag with lag selection AIC: with drift*
+**Run ADF test with one lag with lag selection AIC: with drift**
 
 ```{r}
 adf.stoxx.drift<-ur.df(stoxx,type = c("drift"), lags = 1, selectlags = "AIC")
@@ -131,7 +131,7 @@ tau2 -3.43 -2.86 -2.57
 phi1  6.43  4.59  3.78
 ```
 
-*Run ADF test with one lag with lag selection AIC: with trend*
+**Run ADF test with one lag with lag selection AIC: with trend**
 
 ```{r}
 adf.stoxx.trend<-ur.df(stoxx,type = c("trend"), lags = 1, selectlags = "AIC")
@@ -222,7 +222,7 @@ Value of test-statistic, type: Z-alpha  is: -11.1338
 Z-tau-mu            2.3502
 ```
 
-*Run PP test with Z alpha type and model trend:* 
+**Run PP test with Z alpha type and model trend** 
 
 ```{r}
 pp.stoxx.trend<-ur.pp(stoxx, type = c("Z-alpha"), model = c("trend"), lags = c("short"))
@@ -268,7 +268,7 @@ Z-tau-beta            2.0785
 
 The KPSS test, short for, Kwiatkowski-Phillips-Schmidt-Shin (KPSS), is a type of Unit root test that tests for the stationarity of a given series around a deterministic trend.
 
-*Read data as CSV file*
+**Read data as CSV file**
 
 ```{r}
 kpss<-read.csv("kpss_before.csv")
@@ -289,7 +289,7 @@ head(kpss)
 ## 5  9.642488 6.855040 9.699472 5.223163 8.596832 7.273419     9.044496
 ## 6  9.670808 6.894913 9.742262 5.258797 8.615841 7.284547     9.077054
 ```
-*Changes the dates as factors to actual dates*
+**Changes the dates as factors to actual dates**
 
 ```{r}
 install.packages("zoo")
@@ -314,7 +314,9 @@ head(d.zoo)
 ## 2000-01-10 6.894913 9.742262 5.258797 8.615841 7.284547     9.077054
 
 ```
-*given each series a name*
+
+**given each series a name**
+
 ```{r}
 uk <- d.zoo[,1]
 uk_diff<-diff(uk)
@@ -343,7 +345,8 @@ chi_diff<-diff(chi)
 sa<-d.zoo[,13]
 sa_diff<-diff(sa)
 ```
-### KPSS test for UK before crisis
+
+**KPSS test for UK before crisis**
 
 *KPSS test with a drift*
 
