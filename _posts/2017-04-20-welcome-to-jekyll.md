@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introduction to Stock Analysis with R"
-tagline: "Ashiq Zaman"
+tagline: "Geeting data with quantmod, Import from CSV file and Visualize data"
 ---
 
 Firstly, we install and load the necessary packages.To analyse stock data and to get stock data from the internet, we will use quantmod and ggplot2. Firstly, we install and load the necessary packages.
@@ -170,3 +170,4 @@ plot(IBM_MA20)
 ![SMA 2](https://user-images.githubusercontent.com/47462688/81986996-c40cef00-9630-11ea-88e3-732604dc4a62.JPG)
 
 
+**References**
