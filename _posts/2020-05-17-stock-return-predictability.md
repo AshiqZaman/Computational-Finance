@@ -1,5 +1,5 @@
 ---
 layout: post
 title: "In-Sample and Out-of-Sample Stock Return Predictability"
-tagline: Improvedaugmented Regression, RMSE, Wild Bootstrap
+tagline: Improved augmented Regression, RMSE, Wild Bootstrap
 ---
