@@ -230,4 +230,4 @@ plot(as.xts(cor1[2,3,]),main="DAX30 & CAC40")
 
 **References**
 
-PennState: Statistics Online Courses. 2020. ARCH/GARCH Models | STAT 510. [online] Available at: <https://online.stat.psu.edu/stat510/lesson/11/11.1>.
+* PennState: Statistics Online Courses. 2020. ARCH/GARCH Models, STAT 510. [online] Available at: <https://online.stat.psu.edu/stat510/lesson/11/11.1>.
