@@ -45,8 +45,40 @@ russell<-data.frame(Time=price$Date, Indices=price$Russell1000)
 
 **Now use the breakpoints function to implements the algorithm described in Bai & Perron (2003) for simultaneous estimation of multiple breakpoints.**
 
+* OLS based CUSUM Test:
+
+```{r}
+ocus.price<-efp(STOXX50~Russell1000,data = price, type = "OLS-CUSUM")
+plot(ocus.price)
+```
+
+![CUSUM 1](https://user-images.githubusercontent.com/47462688/82272624-09078d00-9973-11ea-8bdf-5d03f9c9d4fa.JPG)
+
+* Tests based on F statistics
+
+```{r}
+price.fstast.stoxx.russell<-Fstats(STOXX50~Russell1000,data = price, from = 0.15)
+plot(price.fstast.stoxx.russell)
+```
+
+![F test 1](https://user-images.githubusercontent.com/47462688/82272986-20934580-9974-11ea-8cb3-d7908acb71dd.JPG)
+
+
+* Break Point Test:
+
+```{r}
+price.break.stoxx.russell<-breakpoints(STOXX50~Russell1000, data = price, breaks = 5)
+summary(price.break.stoxx.russell)
+plot(price.break.stoxx.russell)
+```
+
+![bp 3](https://user-images.githubusercontent.com/47462688/82273071-57695b80-9974-11ea-9f19-135ee00f6a58.JPG)
+
+
+![bp 4](https://user-images.githubusercontent.com/47462688/82273073-5801f200-9974-11ea-858c-a2e2b679223c.JPG)
+
 
 **References**
 
-Bai J., Perron P. (2003), Computation and Analysis of Multiple Structural Change Models, Journal of Applied Econometrics, 18, 1-22.
+* Bai J., Perron P. (2003), Computation and Analysis of Multiple Structural Change Models, Journal of Applied Econometrics, 18, 1-22.
 
