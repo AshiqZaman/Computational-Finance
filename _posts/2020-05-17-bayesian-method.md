@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Bayesian Approach & Bootstrapping Computation in Finance"
-featured-img: sleek
 mathjax: true
 ---
 
