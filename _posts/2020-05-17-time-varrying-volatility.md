@@ -3,6 +3,7 @@ layout: post
 title: "Time-Varrying Volatility and ARCH Models"
 tagline: ARCH, GARCH & DCC-GARCH
 ---
+
 The autoregressive conditional heteroskedasticity (ARCH) model concerns time series with time-varying heteroskedasticity, where variance is conditional on the information existing at a given point in time.
 
 **The ARCH Models**
@@ -11,7 +12,7 @@ An ARCH (autoregressive conditionally heteroscedastic) model is a model for the 
 
 **The GARCH Models**
 
-*Multivariate GARCH Models*
+* Multivariate GARCH Models
 
 * In line with Engle (2002), the DCC-GARCH can be presented as follows:
 
@@ -19,7 +20,7 @@ An ARCH (autoregressive conditionally heteroscedastic) model is a model for the 
 
 
 
-*Import Pilot data*
+**Import Pilot data**
 
 ```{r}
 price<-read.csv("price.csv")
@@ -28,7 +29,7 @@ return<-read.csv("return.csv")
 head(return)
 ```
 
-*Convert into time series data*
+**Convert into time series data**
 
 ```{r}
 library(zoo)
@@ -39,24 +40,26 @@ head(return)
 dcc<-as.xts(return)
 ```
 
-*Install packages*
+**Install packages**
 
 ```{r}
 library(quantmod)
 library(rugarch)
 library(rmgarch)
 ```
-*Univariate GARCH Model*
+
+**Univariate GARCH Model**
 
 Here we are using the functionality provided by the rugarch package written by Alexios Galanos.
 
-*Model Specification*
+**Model Specification**
 
 The first thing you need to do is to ensure you know what type of GARCH model you want to estimate and then let R know about this. It is the ugarchspec( ) function which is used to let R know about the model type. There is in fact a default specification and the way to invoke this is as follows
 
 ```{r}
 ug_spec = ugarchspec()
 ```
+
 ug_spec is now a list which contains all the relevant model specifications. Let's look at them:
 
 ```{r}
@@ -79,7 +82,7 @@ ewma_spec = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)),
         distribution.model="norm", fixed.pars=list(omega=0))
 ```
 
-*Model Estimation*
+**Model Estimation**
 
 Now that we have specified a model to estimate we need to find the best parameters, i.e. we need to estimate the model. This step is achieved by the ugarchfit function.
 
@@ -87,10 +90,11 @@ Now that we have specified a model to estimate we need to find the best paramete
 ugfit = ugarchfit(spec = ug_spec, data = return)
 ```
 
-*Model Set up*
+**Model Set up**
+
 Here we assume that we are using the same univariate volatility model specification for each of the three assets.
 
-*DCC (MVN)*
+**DCC (MVN)**
 
 ```{r}
 uspec.n = multispec(replicate(3, ugarchspec(mean.model = list(armaOrder = c(1,0)))))
@@ -110,7 +114,7 @@ spec1 = dccspec(uspec = uspec.n, dccOrder = c(1, 1), distribution = 'mvnorm')
 
 In this specification we have to state how the univariate volatilities are modeled (as per uspec.n) and how complex the dynamic structure of the correlation matrix is (here we are using the most standard dccOrder = c(1, 1) specification).
 
-*Model Estimation*
+**Model Estimation**
 
 Now we are in a position to estimate the model using the dccfit function.
 
@@ -122,14 +126,14 @@ We want to estimate the model as specified in spec1, using the data in rX. The o
 
 When you estimate a multivariate volatility model like the DCC model you are typically interested in the estimated covariance or correlation matrices. After all it is at the core of these models that you allow for time-variation in the correlation between the assets (there are also constant correlation models, but we do not discuss this here). Therefore we will now learn how we extract these.
 
-*Get the model based time varying covariance (arrays) and correlation matrices*
+**Get the model based time varying covariance (arrays) and correlation matrices:**
 
 ```{r}
 cov1 = rcov(fit1)  # extracts the covariance matrix
 cor1 = rcor(fit1)  # extracts the correlation matrix
 ```
 
-To understand the object we have at our hands here we can have a look at the imension:
+**To understand the object we have at our hands here we can have a look at the imension:**
 
 ```{r}
 dim(cor1)
@@ -150,6 +154,7 @@ STOXX50 1.0000000 0.9754082 0.9863061
 DAX30   0.9754082 1.0000000 0.9571282
 CAC40   0.9863061 0.9571282 1.0000000
 ```
+
 So let's say we want to plot the time-varying correlation between Google and BP, which is 0.275244 on that last day. In our matrix with returns rX BP is the second asset and Google the 3rd. So in any particular correlation matrix we want the element in row 2 and column 3.
 
 ```{r}
@@ -158,14 +163,14 @@ cor_BG <- as.xts(cor_BG)  # imposes the xts time series format - useful for plot
 ```
 
 And now we plot this.
+
 ```{r}
 plot(cor_BG)
 ```
 
 ![cor_BG](https://user-images.githubusercontent.com/47462688/81700237-50b48300-9460-11ea-8074-1f24f9dedddb.PNG)
 
-*Pre analysis*
-Import Pilot data
+**Import Pilot data**
 
 ```{r}
 price<-read.csv("price.csv")
@@ -191,6 +196,7 @@ head(return)
 ## 6 11/01/2010 -0.002524847  0.000478552 -0.000506910
 
 Convert into time series data
+
 library(zoo)
 
 ## 
@@ -212,6 +218,7 @@ head(return)
 ## 2010-01-08  0.003488690  0.003027297  0.005040941
 ## 2010-01-11 -0.002524847  0.000478552 -0.000506910
 ```
+
 If you transformed cor_BG to be a xts series the plot function automatically picks up the date information. As you can see there is significant variation through time with the correaltion typically varying between 0.2 and 0.5.
 
 Let's plot all three correlations between the three assets.
@@ -222,10 +229,19 @@ plot(as.xts(cor1[1,2,]),main="STOXX50 & DAX30")
 plot(as.xts(cor1[1,3,]),main="STOXX50 & CAC40")
 plot(as.xts(cor1[2,3,]),main="DAX30 & CAC40")
 ```
+
 ![dcc1](https://user-images.githubusercontent.com/47462688/81701775-5c08ae00-9462-11ea-9e91-de78bcdcd8d9.PNG)
+
 ![dcc2](https://user-images.githubusercontent.com/47462688/81701789-6165f880-9462-11ea-9578-d84f83efcc08.PNG)
+
 ![dcc3](https://user-images.githubusercontent.com/47462688/81701817-69259d00-9462-11ea-95d0-9f623500a975.PNG)
 
+
+* We can see an increasing degree of market integration during mid 2011 which reflects the Japan Tsunami. This time Toyota, Nissan and Honda completely suspended auto production until 14 March 2011. The quake and tsunami damaged and closed down key ports, and some airports shut briefly, disrupting the global supply chain of semiconductor equipment and materials.
+
+* Banks across Europe and the US have been battered by Brexit. Shares in big global banks outside the UK fell anywhere from 7 to 20 percent on the day after the UK voted to quit the EU. Though other parts of the market have since recovered, non-UK banks have failed to make back all their losses.
+
+* Finally, in 2020 huge increase in degree of cointegration due to global lockdown.  
 
 
 **References**
