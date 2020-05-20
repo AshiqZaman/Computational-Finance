@@ -10,5 +10,6 @@ order: 1
 
 
 **Name:** Dr Ashiq Zaman |
-**Email:** ashiq.zaman@outlook.com |
+**Email:** ashiq.zaman@outlook.com   
+
 **LinkedIn:** www.linkedin.com/in/ashiqzaman/
