@@ -19,13 +19,14 @@ where xt and yt are two different stock market indices. And et represents residu
 
 where γt = estimated parameters. εt = disturbance terms. To find out the long run relationship between markets, a hypothesis test is conducted on the coefficient (γt). If the results shows that the test statistics of the coefficients is greater than the critical value. Then it rejects the null hypothesis. So it could be conclude that the residual is stationary. This indicates that the markets are co-integrated in other word there is some linkages between the markets.      
 
-*read data at CSV file* 
+**read data at CSV file** 
 
 ```{r}
 price<-read.csv("price.csv")
 head(price)
 ```
-*1st step of Engle-granger test is to take OLS test*
+
+**1st step of Engle-granger test is to take OLS test**
 
 ```{r}
 Engle.stoxx<-lm(STOXX50~DAX30, data = price)
@@ -50,7 +51,7 @@ Multiple R-squared:  0.7948,	Adjusted R-squared:  0.7947
 F-statistic: 1.044e+04 on 1 and 2697 DF,  p-value: < 2.2e-16
 ```
 
-*calcualte residual from OLS test and test unit root to finish second step of Engle Granger test*
+**calcualte residual from OLS test and test unit root to finish second step of Engle Granger test**
 
 ```{r}
 residual.stoxx<-resid(Engle.stoxx)
@@ -102,8 +103,8 @@ The main disadvantage of Engle-Granger co-integration test is that if there are 
 
 ![jh 1](https://user-images.githubusercontent.com/47462688/81881175-5e185d00-9587-11ea-8631-be0c328631e2.JPG)
 
-where zt= n×1 vector that are integrated of order one, commonly denoted as I(1) and
-µt= n×1 vector innovation. 
+where zt= n×1 vector that are integrated of order one, commonly denoted as I(1) and µt= n×1 vector innovation. 
+
 The Vector Auto Regression (VAR) model which is equation (4.5) can be written as follows
 
 ![jh 2](https://user-images.githubusercontent.com/47462688/81881217-7daf8580-9587-11ea-807f-f7963599133f.JPG)
@@ -126,7 +127,7 @@ On the other hand the Maximum Eigen Value test λmax tests the null hypothesis o
 
 From the equation (4.8) and (4.9) T represents sample size and λ ̂(_j^ ) represents estimated values of characteristic root ranked from largest to smallest.    
 
-*We can now perform the Johansen test on the  logarith daily price series and output the summary of the test: With trace test type*
+**We can now perform the Johansen test on the  logarith daily price series and output the summary of the test: With trace test type**
 
 ```{r}
 jotest.price.trace<-ca.jo(price[,c("STOXX50","DAX30","CAC40","Russell1000")], type=c("trace"), K=2, ecdet=c("none"), spec=c("longrun"),season = NULL, dumvar = NULL)
@@ -169,7 +170,7 @@ CAC40.d       -0.013452692  0.011928001  0.0001995051  -0.0004257001
 Russell1000.d -0.009616529 -0.001486424 -0.0055048756  -0.0004753761
 ```
 
-*We can now perform the Johansen test on the  logarith daily price series and output the summary of the test:  test typ eigene*
+**We can now perform the Johansen test on the  logarith daily price series and output the summary of the test:  test typ eigene**
 
 ```{r}
 jotest.price.eigen<-ca.jo(price[,c("STOXX50","DAX30","CAC40","Russell1000")], type=c("eigen"), K=2, ecdet=c("none"), spec=c("longrun"),season = NULL, dumvar = NULL)
@@ -212,12 +213,6 @@ Russell1000.d -0.009616529 -0.001486424 -0.0055048756  -0.0004753761
 ```
 
 
-### Gregory-Hansen Test
-
-
-### Bai Perron Test
-
-
 ### Granger (1969) Causality Test
 
 If any test result gives co-integration of selected markets, then it indicates that there exists a long run relationship among these markets. The long run relationship indicates that there may be causality exists among the selected markets. To investigate the causality among the markets, this study used the Granger (1969) Causality test. if there are two different stock markets indices namely xt and yt then the Granger Causality test can be written as follows
@@ -247,8 +242,7 @@ On the other hand, the variance ratio also used in this study. In 1988 Lo and Ma
 
 ![v1](https://user-images.githubusercontent.com/47462688/81882337-6aea8000-958a-11ea-9185-1a4e33a63c64.JPG)
 
-where σ2(q) represents unbiased estimator of 1/q of the variance of q- period returns and
-σ2(1) represents unbiased estimator of 1/q of the variance of 1- period returns. There are two statistics in VR test and these are Z(q) and Z*(q). The null hypothesis of Z(q) is homoskedasticity and the null hypothesis of Z*(q) is heteroskedasticity. Now it can be rewrite as
+where σ2(q) represents unbiased estimator of 1/q of the variance of q- period returns and σ2(1) represents unbiased estimator of 1/q of the variance of 1- period returns. There are two statistics in VR test and these are Z(q) and Z*(q). The null hypothesis of Z(q) is homoskedasticity and the null hypothesis of Z*(q) is heteroskedasticity. Now it can be rewrite as
 
 ![v 2](https://user-images.githubusercontent.com/47462688/81882407-98cfc480-958a-11ea-803f-4e8f5cb55e3b.JPG)
 
