@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Bayesian Approach & Bootstrapping Computation in Finance"
-
+mathjax: true
 ---
 
 I'm going to implement a Bayesian approach linear regression in R from scratch and use it to forecast FTSE100 return by using Dividend Yield.
