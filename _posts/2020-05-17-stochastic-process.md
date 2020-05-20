@@ -2,7 +2,6 @@
 layout: post
 title: "Stochastic Process in Finance"
 tagline: "Stochastic Process: An application to Stock Market data with R"
-categories: junk
 image: /thumbnail-mobile.png
 author: "Ashiq Zaman"
 meta: "Springfield"
