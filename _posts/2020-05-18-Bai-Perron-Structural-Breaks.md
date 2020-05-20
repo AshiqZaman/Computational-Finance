@@ -53,7 +53,7 @@ plot(ocus.price)
 
 ![CUSUM 1](https://user-images.githubusercontent.com/47462688/82272624-09078d00-9973-11ea-8bdf-5d03f9c9d4fa.JPG)
 
-**Tests based on F statistics*
+**Tests based on F statistics**
 
 ```{r}
 price.fstast.stoxx.russell<-Fstats(STOXX50~Russell1000,data = price, from = 0.15)
