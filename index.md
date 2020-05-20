@@ -10,7 +10,7 @@ layout: home
 
 
 
-This Github page is managed by Ashiq Zaman who replicated some of the key statistical analysis by using Timeseries data with R. This page presents Unit Root test, Cointegration Test, Volatily analysis, Bootstrapping, Bayesian Statistics, Stochastic Process in Finance and Timeseries Regression and Forecasting and Data visualization with Quantmod and ggplot2.
+This is a Github page, managed by Ashiq Zaman who replicated some of the key statistical analysis by using Timeseries data with R. This page presents Structural Break Cointegration test, forecasting stock return with ARIMA model, decomposing data, Unit Root test, Cointegration Test, Volatility analysis, Bootstrapping, Bayesian Statistics, Stochastic Process in Finance and Timeseries Regression and Forecasting and Data visualization with Quantmod and ggplot2.
 
 
 
