@@ -76,11 +76,18 @@ plot(price.break.stoxx.russell)
 
 ![bp 4](https://user-images.githubusercontent.com/47462688/82273073-5801f200-9974-11ea-858c-a2e2b679223c.JPG)
 
-* We can see an increasing degree of market integration during mid 2011 which reflects the Japan Tsunami. This time Toyota, Nissan and Honda completely suspended auto production until 14 March 2011. The quake and tsunami damaged and closed down key ports, and some airports shut briefly, disrupting the global supply chain of semiconductor equipment and materials.
+From the Bai and Perron test five structural breaks observed. These are:
 
-* Banks across Europe and the US have been battered by Brexit. Shares in big global banks outside the UK fell anywhere from 7 to 20 percent on the day after the UK voted to quit the EU. Though other parts of the market have since recovered, non-UK banks have failed to make back all their losses.
+*	2011: Japan Tsunami and Greece economic crisis.
 
-* Finally, in 2020 huge increase in degree of cointegration due to global lockdown.  
+*	2013-2014: China overtake USA in scientific research. 
+
+* 2014-2015: Latvia and Lithonia joins Euro Zone and Brazil world cup. 
+
+* 2016: Brexit, US election and Euro and Olympic
+
+*	2018: US China trade War, US leaves Iran nuclear deal. 
+
 
 
 **References**
