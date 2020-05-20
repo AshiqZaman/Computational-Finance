@@ -10,6 +10,13 @@ In this post, I examine the issue of identifying unit roots in the presence of s
 
 ### Zivot-Andrews Test to analyze the presense of a unit root & structural break
 
+In the Zivot-Andrews tests, 
+
+* The null hypothesis is that the series has a unit root with structural break(s) against the alternative hypothesis that they are stationary with break(s). 
+
+ * Reject Null if t-value statistic is lower than tabulated critical value (left tailed test).
+
+
 **Read data from CSV file**
 
 ```{r}
@@ -89,7 +96,7 @@ Critical values: 0.01= -5.34 0.05= -4.8 0.1= -4.58
 Potential break point at position: 2646 
 ```
 
-The Zivot-Andrews test suggests that there is break in data trend at observation number 2646.The T-statistics of Z-A test is lower than critical value (in absolute value), REJECTING Null hypothesis of unit root. The data has structure break at 20 February 2020.
+The Zivot-Andrews test suggests that there is break in data at 21/02/2020 .The T-statistics of Z-A test is lower than critical value (in absolute value), REJECTING Null hypothesis of unit root. The data has structure break at 21 February 2020.
 
 **Plot the Unit root test to visualise data**
 
