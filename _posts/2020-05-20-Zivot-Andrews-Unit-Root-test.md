@@ -54,9 +54,9 @@ russell<- price.zoo[,4]
 library(urca)
 ```
 
-The Zivot-Adrews test to analyze the presence of unit root and structural break in the data set.If the unit root tests find that a series contain one unit root, the appropriate route in this case is to transform the data by differencing the variables prior to their inclusion in the regression model, but this incurs a loss of important long-run information.it facilitates the analysis of whether a structural break on a certain variable is associated with a particular event such as a change in government policy, a currency crisis, war and so forth. The Zivot-Andrews test only allow for one structural break. In Zivot-Andrews test a break date will be chosen where the evidence is least favorable for the unit root null. In the Zivot-Andrews tests, the null hypothesis is that the series has a unit root with structural break(s) against the alternative hypothesis that they are stationary with break(s). REject Null if t-value statistic is lower than tabulated critical value (left tailed test).
+The Zivot-Adrews test to analyze the presence of unit root and structural break in the data set.If the unit root tests find that a series contain one unit root, the appropriate route in this case is to transform the data by differencing the variables prior to their inclusion in the regression model, but this incurs a loss of important long-run information.it facilitates the analysis of whether a structural break on a certain variable is associated with a particular event such as a change in government policy, a currency crisis, war and so forth. The Zivot-Andrews test only allow for one structural break. In Zivot-Andrews test a break date will be chosen where the evidence is least favorable for the unit root null. In the Zivot-Andrews tests, the null hypothesis is that the series has a unit root with structural break(s) against the alternative hypothesis that they are stationary with break(s). Reject Null if t-value statistic is lower than tabulated critical value (left tailed test).
 
-**ZA test for CAC40 with intercept**
+**Z-A test for CAC40 with intercept**
 
 ```{r}
 cac40.za.intercept <- ur.za(cac40, model=c("intercept"), lag=1)
@@ -106,7 +106,7 @@ plot(cac40.za.intercept)
 
 ![za1](https://user-images.githubusercontent.com/47462688/82130084-fdc03000-97bf-11ea-8522-01cf195b5917.JPG)
 
-**ZA test for CAC40 with trend**
+**Z-A test for CAC40 with trend**
 
 ```{r}
 cac40.za.trend <- ur.za(cac40, model=c("trend"), lag=1)
