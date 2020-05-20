@@ -2,7 +2,6 @@
 layout: post
 title: "Unit Root Tests with Structural Breaks"
 tagline: "Zivot-Andrews (1992) unit root test with a single structural break: An investigation on Stock Market data with R"
-categories: junk
 image: /thumbnail-mobile.png
 author: "Ashiq Zaman"
 meta: "Springfield"
@@ -42,7 +41,7 @@ cac40<- price.zoo[,3]
 russell<- price.zoo[,4]
 ```
 
-*Load all necessary r packages*
+**Load all necessary r packages**
 
 ```{r}
 library(urca)
@@ -50,7 +49,7 @@ library(urca)
 
 The Zivot-Adrews test to analyze the presence of unit root and structural break in the data set.If the unit root tests find that a series contain one unit root, the appropriate route in this case is to transform the data by differencing the variables prior to their inclusion in the regression model, but this incurs a loss of important long-run information.it facilitates the analysis of whether a structural break on a certain variable is associated with a particular event such as a change in government policy, a currency crisis, war and so forth. The Zivot-Andrews test only allow for one structural break. In Zivot-Andrews test a break date will be chosen where the evidence is least favorable for the unit root null. In the Zivot-Andrews tests, the null hypothesis is that the series has a unit root with structural break(s) against the alternative hypothesis that they are stationary with break(s). REject Null if t-value statistic is lower than tabulated critical value (left tailed test).
 
-*ZA test for CAC40 with intercept*
+**ZA test for CAC40 with intercept**
 
 ```{r}
 cac40.za.intercept <- ur.za(cac40, model=c("intercept"), lag=1)
@@ -92,7 +91,7 @@ Potential break point at position: 2646
 
 The Zivot-Andrews test suggests that there is break in data trend at observation number 2646.The T-statistics of Z-A test is lower than critical value (in absolute value), REJECTING Null hypothesis of unit root. The data has structure break at 20 February 2020.
 
-*Plot the Unit root test to visualise data*
+**Plot the Unit root test to visualise data**
 
 ```{r}
 plot(cac40.za.intercept)
@@ -100,7 +99,7 @@ plot(cac40.za.intercept)
 
 ![za1](https://user-images.githubusercontent.com/47462688/82130084-fdc03000-97bf-11ea-8522-01cf195b5917.JPG)
 
-*ZA test for CAC40 with trend*
+**ZA test for CAC40 with trend**
 
 ```{r}
 cac40.za.trend <- ur.za(cac40, model=c("trend"), lag=1)
@@ -142,7 +141,7 @@ Potential break point at position: 2606
 
 The Zivot-Andrews test suggests that there is break in data trend at observation number 2606.The T-statistics of Z-A test is lower than critical value (in absolute value), REJECTING Null hypothesis of unit root. The data has structure break at 27 December 2019.
 
-*Plot the Unit root test to visualise data*
+**Plot the Unit root test to visualise data**
 
 ```{r}
 plot(cac40.za.trend)
@@ -152,3 +151,6 @@ plot(cac40.za.trend)
 
 
 ### References
+
+* Zivot, E. and Andrews, Donald W.K. (1992), Further Evidence on the Great Crash, the Oil-Price Shock, and the Unit-Root Hypothesis, Journal of Business \& Economic Statistics, 10(3), 251–270.
+
