@@ -7,7 +7,7 @@ image: /thumbnail-mobile.png
 author: "Ashiq Zaman"
 meta: "Springfield"
 ---
-In this blog, I examine the issue of identifying unit roots in the presence of structural breaks. Stationary series have a mean and covariance that do not change over time. This implies that a series is mean-reverting and any shock to the series will have a temporary effect. A number of different unit root tests have emerged from the research surrounding structural breaks and unit roots. These tests vary depending on the number of breaks in the data, whether a trend is present or not, and the null hypothesis that is being tested. Today I'll use Zivot-Andrews test to check Unit Root for Stock Index.
+In this post, I examine the issue of identifying unit roots in the presence of structural breaks. Stationary series have a mean and covariance that do not change over time. This implies that a series is mean-reverting and any shock to the series will have a temporary effect. A number of different unit root tests have emerged from the research surrounding structural breaks and unit roots. These tests vary depending on the number of breaks in the data, whether a trend is present or not, and the null hypothesis that is being tested. Today I'll use Zivot-Andrews test to check Unit Root for Stock Index.
 
 ### Zivot-Andrews Test to analyze the presense of a unit root & structural break
 
