@@ -77,4 +77,4 @@ ggplot()+geom_line(data = data.price,aes(x=DATES,y=clean_count, colour="STOXX50"
 
 **References**
 
-Dancho, M., 2020. R Quantitative Analysis Package Integrations In Tidyquant. [online] Cran.r-project.org. Available at: <https://cran.r-project.org/web/packages/tidyquant/vignettes/TQ02-quant-integrations-in-tidyquant.html>.
+* Dancho, M., 2020. R Quantitative Analysis Package Integrations In Tidyquant. [online] Cran.r-project.org. Available at: <https://cran.r-project.org/web/packages/tidyquant/vignettes/TQ02-quant-integrations-in-tidyquant.html>.
