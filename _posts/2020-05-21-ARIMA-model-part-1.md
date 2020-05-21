@@ -10,6 +10,7 @@ This is a part one of ARIMA forecasting for STOXX50 index. This part going to sh
 
 load all required packages:
 
+
 ```{r}
 library(ggplot2)
 library(forecast)
@@ -17,6 +18,7 @@ library(tseries)
 library(tidyverse)
 library(rio)
 library(readxl)
+library(tidyquant)
 ```
 
 Import data from the locally downloaded file:
