@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ARIMA model for Stock Forecasting"
+title: "ARIMA Model for Stock Forecasting"
 tagline: "ARIMA (Autoregressive Integrated Moving Average) for Stock forecasting with R"
 image: /thumbnail-mobile.png
 author: "Ashiq Zaman"
