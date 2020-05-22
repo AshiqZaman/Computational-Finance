@@ -18,3 +18,7 @@ AR is a class of liner model where the variable of interest is regressed on its 
 <a href="https://www.codecogs.com/eqnedit.php?latex=y_{t}=\delta&space;&plus;\phi&space;_{1}y_{t-1}&plus;\phi&space;_{2}y_{t-2}&plus;--------&plus;\phi&space;_{p}y_{t-p}&plus;\epsilon&space;_{t}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y_{t}=\delta&space;&plus;\phi&space;_{1}y_{t-1}&plus;\phi&space;_{2}y_{t-2}&plus;--------&plus;\phi&space;_{p}y_{t-p}&plus;\epsilon&space;_{t}" title="y_{t}=\delta +\phi _{1}y_{t-1}+\phi _{2}y_{t-2}+--------+\phi _{p}y_{t-p}+\epsilon _{t}" /></a>
 
 **Moving Average (MA)**
+
+MA is another class of linear model. In MA, the output or the variable of interest is modeled via its own imperfectly predicted values of current and previous times. It can be written in terms of error terms:
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=y_{t}=\mu&space;&plus;\theta&space;_{1}\epsilon_{t-1}&plus;\theta&space;_{2}\epsilon_{t-2}&plus;-----&plus;\theta&space;_{q}\epsilon_{t-p}&plus;\epsilon&space;_{t}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y_{t}=\mu&space;&plus;\theta&space;_{1}\epsilon_{t-1}&plus;\theta&space;_{2}\epsilon_{t-2}&plus;-----&plus;\theta&space;_{q}\epsilon_{t-p}&plus;\epsilon&space;_{t}" title="y_{t}=\mu +\theta _{1}\epsilon_{t-1}+\theta _{2}\epsilon_{t-2}+-----+\theta _{q}\epsilon_{t-p}+\epsilon _{t}" /></a>
