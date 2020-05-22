@@ -1,14 +1,10 @@
 ---
 layout: post
-title: "Time-Varrying Volatility and ARCH Models"
-tagline: ARCH, GARCH & DCC-GARCH
+title: "Time-Varrying Volatility with GARCH Model"
+tagline: GARCH & DCC-GARCH
 ---
 
-The autoregressive conditional heteroskedasticity (ARCH) model concerns time series with time-varying heteroskedasticity, where variance is conditional on the information existing at a given point in time.
-
-**The ARCH Models**
-
-An ARCH (autoregressive conditionally heteroscedastic) model is a model for the variance of a time series. ARCH models are used to describe a changing, possibly volatile variance. Although an ARCH model could possibly be used to describe a gradually increasing variance over time, most often it is used in situations in which there may be short periods of increased variation. (Gradually increasing variance connected to a gradually increasing mean level might be better handled by transforming the variable.)
+The generalized autoregressive conditional heteroskedasticity (GARCH) process is an econometric term developed in 1982 by Robert F. Engle, an economist and 2003 winner of the Nobel Memorial Prize for Economics, to describe an approach to estimate volatility in financial markets. There are several forms of GARCH modeling. This post going to use Dynamic Conditional Correlation (DCC) GARCH to investigate the time varrying volatility between stock market returns. 
 
 **The GARCH Models**
 
