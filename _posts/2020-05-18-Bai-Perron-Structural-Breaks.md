@@ -76,7 +76,7 @@ plot(price.break.stoxx.russell)
 
 ![bp 4](https://user-images.githubusercontent.com/47462688/82273073-5801f200-9974-11ea-858c-a2e2b679223c.JPG)
 
-From the Bai and Perron test five structural breaks observed. These are:
+The Bai and Perron Test shows five different structural breaks at the follwoing dates:
 
 *	2011: Japan Tsunami and Greece economic crisis.
 
@@ -88,7 +88,7 @@ From the Bai and Perron test five structural breaks observed. These are:
 
 *	2018: US China trade War, US leaves Iran nuclear deal. 
 
-
+These could be possible reasons but this post doesnot claim any connection between these events with the structural breaks. However, by lokking into internet, I can find these are the key economic events over the last 10 years. 
 
 **References**
 
