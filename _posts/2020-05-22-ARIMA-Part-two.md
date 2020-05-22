@@ -7,6 +7,8 @@ author: "Ashiq Zaman"
 meta: "Springfield"
 ---
 
+ARIMA (autoregressive integrated moving average) is one of the most common statistical technique which used to fit time series data and forecasting. ARIMA is a generalized version of ARMA (autoregressive moving average) process, where ARMA process is applied to differenced version of the data instead the original data. The ARIMA model use p, d and q to specify order, where p represents order of AR, d represents the order of difference and MA part represents the MA part. 
+
 ### Auto Regression (AR) and Moving Average (MA) process
 
 **Auto Regression (AR)**
